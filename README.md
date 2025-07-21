@@ -10,7 +10,7 @@ A lightweight, interactive web application built with **Streamlit** that leverag
 - [Tech Stack](#-tech-stack)
 - [Prerequisites](#-prerequisites)
 - [Installation](#-installation)
-- [Configuration](#-configuration)
+- [Configuration](#configuration)
 - [Usage](#-usage)
 - [Limitations](#-limitations)
 - [Future Enhancements](#-future-enhancements)
@@ -367,6 +367,6 @@ Passionate AI/ML engineer with expertise in natural language processing, full-st
 
 *Made with ❤️ for the recruitment community*
 
-**[🚀 Try it now](https://github.com/Raheelkhan-05/resume-screener)**
+**[🚀 Try it now](https://resumescreaner-crdgdwfbgsdwa4ft.canadacentral-01.azurewebsites.net)**
 
 </div>
