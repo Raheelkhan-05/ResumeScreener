@@ -153,7 +153,7 @@ npm start
 - Average improvement in ATS score after applying recommendations: **~14%**.
 - Deterministic scoring ensures <2% variation on repeated runs.
 - Robust to varied resume formats and terminologies.
-- See the [project report](./PROJECT_REPORT.pdf) for detailed test cases, methodologies, and results.
+- See the [project report](./7CE 154_PROJECT REPORT - DOC_Automated Resume Screening System Using NLP And ML.pdf) for detailed test cases, methodologies, and results.
 
 <details>
 <summary>Sample Test Case Results</summary>
@@ -213,7 +213,7 @@ Project developed under the guidance of:
 6. Verma & Gupta, "Advanced AI-based resume screening," IJISIE, 2025.
 ...
 
-See [project report](./PROJECT_REPORT.pdf) for the complete bibliography.
+See [project report](./7CE 154_PROJECT REPORT - DOC_Automated Resume Screening System Using NLP And ML.pdf) for the complete bibliography.
 
 ---
 
