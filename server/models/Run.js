@@ -1,27 +1,82 @@
 import mongoose from "mongoose";
 
-const RunSchema = new mongoose.Schema({
-  userId: { type: mongoose.Schema.Types.ObjectId, ref: "User", index: true, required: true },
+const runSchema = new mongoose.Schema({
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+    required: true,
+    index: true
+  },
+  
+  // GridFS file references instead of file paths
+  resumeFileId: {
+    type: mongoose.Schema.Types.ObjectId,
+    required: true
+  },
+  resumeOriginalName: {
+    type: String,
+    required: true
+  },
+  
+  jdFileId: {
+    type: mongoose.Schema.Types.ObjectId,
+    required: false
+  },
+  jdOriginalName: {
+    type: String,
+    required: false
+  },
+  jdText: {
+    type: String,
+    required: false
+  },
+  
+  status: {
+    type: String,
+    enum: ["processing", "done", "error"],
+    default: "processing",
+    index: true
+  },
+  
+  error: {
+    type: String,
+    required: false
+  },
+  
+  // Parsed results
+  parsed_resume: {
+    type: mongoose.Schema.Types.Mixed,
+    required: false
+  },
+  parsed_jd: {
+    type: mongoose.Schema.Types.Mixed,
+    required: false
+  },
+  
+  // Scoring results
+  scoring: {
+    type: mongoose.Schema.Types.Mixed,
+    required: false
+  },
+  summary_recommendations: {
+    type: mongoose.Schema.Types.Mixed,
+    required: false
+  },
+  
+  totalScore: {
+    type: Number,
+    required: false,
+    min: 0,
+    max: 100
+  }
+}, {
+  timestamps: true
+});
 
-  // Inputs
-  resumeFilePath: String,
-  resumeOriginalName: String,
-  jdFilePath: String,
-  jdOriginalName: String,
-  jdText: String,               // if JD was provided as raw text
+// Indexes for better query performance
+runSchema.index({ userId: 1, createdAt: -1 });
+runSchema.index({ status: 1, userId: 1 });
 
+const Run = mongoose.model("Run", runSchema);
 
-
-  // Outputs
-  parsed_resume: Object,
-  parsed_jd: Object,
-  scoring: Object,
-  summary_recommendations: Object,
-  totalScore: Number,
-
-  // Status
-  status: { type: String, enum: ["processing", "done", "error"], default: "processing", index: true },
-  error: String
-}, { timestamps: true });
-
-export default mongoose.model("Run", RunSchema);
+export default Run;
