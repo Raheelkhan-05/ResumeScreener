@@ -50,13 +50,19 @@ const downloadFromGridFS = async (fileId) => {
   
   return new Promise((resolve, reject) => {
     const downloadStream = bucket.openDownloadStream(fileId);
-    const writeStream = require("fs").createWriteStream(tempPath);
+    const chunks = [];
     
+    downloadStream.on("data", (chunk) => chunks.push(chunk));
     downloadStream.on("error", reject);
-    writeStream.on("error", reject);
-    writeStream.on("finish", () => resolve(tempPath));
-    
-    downloadStream.pipe(writeStream);
+    downloadStream.on("end", async () => {
+      try {
+        const buffer = Buffer.concat(chunks);
+        await fs.writeFile(tempPath, buffer);
+        resolve(tempPath);
+      } catch (err) {
+        reject(err);
+      }
+    });
   });
 };
 
